@@ -1,7 +1,6 @@
-package com.ccsw.tutorial.category.services;
+package com.ccsw.tutorial.category;
 import com.ccsw.tutorial.category.model.Category;
-import com.ccsw.tutorial.category.dto.CategoryDto;
-import com.ccsw.tutorial.category.repositories.CategoryRepository;
+import com.ccsw.tutorial.category.model.CategoryDto;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,19 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class CategoryService implements ICategoryService {
+public class CategoryServiceImpl implements CategoryService {
 
     @Autowired
     CategoryRepository categoryRepository;
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Category get(Long id) {
+
+        return this.categoryRepository.findById(id).orElse(null);
+    }
 
     /**
      * {@inheritDoc}
@@ -39,7 +47,7 @@ public class CategoryService implements ICategoryService {
         if (id == null) {
             category = new Category();
         } else {
-            category = this.categoryRepository.findById(id).orElse(null);
+            category = this.get(id);
         }
 
         category.setName(dto.getName());
@@ -53,7 +61,7 @@ public class CategoryService implements ICategoryService {
     @Override
     public void delete(Long id) throws Exception {
 
-        if(this.categoryRepository.findById(id).orElse(null) == null){
+        if(this.get(id) == null){
             throw new Exception("Not exists");
         }
 

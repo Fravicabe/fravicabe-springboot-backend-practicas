@@ -1,6 +1,6 @@
-package com.ccsw.tutorial.category.services;
+package com.ccsw.tutorial.category;
 
-import com.ccsw.tutorial.category.dto.CategoryDto;
+import com.ccsw.tutorial.category.model.CategoryDto;
 import com.ccsw.tutorial.category.model.Category;
 
 
@@ -10,8 +10,15 @@ import java.util.List;
  * @author ccsw
  *
  */
-public interface ICategoryService {
+public interface CategoryService {
 
+    /**
+     * Recupera una {@link Category} a partir de su ID
+     *
+     * @param id PK de la entidad
+     * @return {@link Category}
+     */
+    Category get(Long id);
     /**
      * Método para recuperar todas las {@link Category}
      *

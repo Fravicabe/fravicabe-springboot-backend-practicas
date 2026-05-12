@@ -1,6 +1,6 @@
 package com.ccsw.tutorial.category;
 
-import com.ccsw.tutorial.category.dto.CategoryDto;
+import com.ccsw.tutorial.category.model.CategoryDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

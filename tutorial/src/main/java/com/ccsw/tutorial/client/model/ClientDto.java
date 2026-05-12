@@ -1,10 +1,10 @@
-package com.ccsw.tutorial.category.dto;
+package com.ccsw.tutorial.client.model;
 
 /**
  * @author ccsw
  *
  */
-public class CategoryDto {
+public class ClientDto {
 
     private Long id;
 
