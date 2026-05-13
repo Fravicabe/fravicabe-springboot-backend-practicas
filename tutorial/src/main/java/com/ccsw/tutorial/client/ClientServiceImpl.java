@@ -28,12 +28,19 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void save(Long id, ClientDto dto) {
 
+        Client existing = this.clientRepository.findByName(dto.getName());
+
+        if (existing != null && (!existing.getId().equals(id))) {
+            throw new RuntimeException("Client already exists");
+        }
+
         Client client;
 
         if (id == null) {
             client = new Client();
         } else {
-            client = this.get(id);
+            client = this.clientRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("Client not found"));
         }
 
         client.setName(dto.getName());
