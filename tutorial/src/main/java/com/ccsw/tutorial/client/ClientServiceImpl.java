@@ -51,7 +51,8 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public void delete(Long id) throws Exception {
 
-        if (this.get(id) != null) {
+
+        if (this.get(id) == null) {
             throw new Exception("Not exists");
         }
         this.clientRepository.deleteById(id);

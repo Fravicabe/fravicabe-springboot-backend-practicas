@@ -62,7 +62,7 @@ public class ClientController {
      *
      * @param id PK de la entidad
      */
-    @Operation(summary = "Delete", description = "Method that deletes a Category")
+    @Operation(summary = "Delete", description = "Method that deletes a Client")
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Long id) throws Exception {
 

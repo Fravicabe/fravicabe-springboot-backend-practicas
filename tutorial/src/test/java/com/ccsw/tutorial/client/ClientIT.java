@@ -85,4 +85,62 @@ public class ClientIT {
 
         assertTrue(response.getStatusCode().is5xxServerError());
     }
+    // Prueba de borrar un cliente
+    @Test
+    public void deleteExistingClientShouldRemoveClient() {
+
+        ResponseEntity<List<ClientDto>> responseBefore =
+                restTemplate.exchange(
+                        LOCALHOST + port + SERVICE_PATH,
+                        HttpMethod.GET,
+                        null,
+                        responseType
+                );
+
+        assertNotNull(responseBefore);
+        assertEquals(3, responseBefore.getBody().size());
+
+        restTemplate.exchange(
+                LOCALHOST + port + SERVICE_PATH + "/3",
+                HttpMethod.DELETE,
+                null,
+                Void.class
+        );
+
+        ResponseEntity<List<ClientDto>> responseAfter =
+                restTemplate.exchange(
+                        LOCALHOST + port + SERVICE_PATH,
+                        HttpMethod.GET,
+                        null,
+                        responseType
+                );
+
+        assertNotNull(responseAfter);
+        assertEquals(2, responseAfter.getBody().size());
+
+        ClientDto deletedClient = responseAfter.getBody().stream()
+                .filter(c -> c.getId().equals(3L))
+                .findFirst()
+                .orElse(null);
+
+        assertNull(deletedClient);
+    }
+
+    @Test
+    public void deleteNotExistingClientShouldReturnError() {
+
+        Long notExistingId = 67L;
+
+        ResponseEntity<String> response =
+                restTemplate.exchange(
+                        LOCALHOST + port + SERVICE_PATH + "/" + notExistingId,
+                        HttpMethod.DELETE,
+                        null,
+                        String.class
+                );
+
+        // Comprobación de error
+        assertTrue(response.getStatusCode().is5xxServerError());
+    }
+
 }
