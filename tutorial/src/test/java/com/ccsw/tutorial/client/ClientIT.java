@@ -100,6 +100,16 @@ public class ClientIT {
         assertNotNull(responseBefore);
         assertEquals(3, responseBefore.getBody().size());
 
+        try {
+            restTemplate.exchange(
+                    "http://localhost:" + port + "/loan/4", // Borra el préstamo de Manuel primero
+                    HttpMethod.DELETE,
+                    null,
+                    Void.class
+            );
+        } catch (Exception e) {
+        }
+
         restTemplate.exchange(
                 LOCALHOST + port + SERVICE_PATH + "/3",
                 HttpMethod.DELETE,
@@ -116,7 +126,7 @@ public class ClientIT {
                 );
 
         assertNotNull(responseAfter);
-        assertEquals(2, responseAfter.getBody().size());
+        assertEquals(2, responseAfter.getBody().size()); // Ahora sí devolverá 2 de forma correcta
 
         ClientDto deletedClient = responseAfter.getBody().stream()
                 .filter(c -> c.getId().equals(3L))

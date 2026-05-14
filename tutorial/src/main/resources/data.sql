@@ -27,3 +27,16 @@ INSERT INTO game(title, age, category_id, author_id) VALUES ('1920: Wall Street'
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Barrage', '14', 1, 3);
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Los viajes de Marco Polo', '12', 1, 3);
 INSERT INTO game(title, age, category_id, author_id) VALUES ('Azul', '8', 3, 5);
+
+/* Préstamos de prueba (Loan) */
+
+INSERT INTO loan(game_id, client_id, loan_date, return_date)
+VALUES (1, 1, '2026-01-10', '2026-01-17');
+INSERT INTO loan(game_id, client_id, loan_date, return_date)
+VALUES (1, 2, '2026-02-01', '2026-02-15');
+INSERT INTO loan(game_id, client_id, loan_date, return_date)
+VALUES (2, 1, '2026-02-10', '2026-02-20');
+INSERT INTO loan(game_id, client_id, loan_date, return_date)
+VALUES (4, 3, '2026-03-01', '2026-03-10');
+INSERT INTO loan(game_id, client_id, loan_date, return_date)
+VALUES (6, 2, '2026-03-25', '2026-04-05');

@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
  * @author ccsw
  *
  */
-@Tag(name = "Category", description = "API of Category")
+@Tag(name = "Category", description = "API  of Category")
 @RequestMapping(value = "/category")
 @RestController
 @CrossOrigin(origins = "*")
