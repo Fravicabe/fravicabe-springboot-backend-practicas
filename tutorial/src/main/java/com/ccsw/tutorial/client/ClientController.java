@@ -18,11 +18,11 @@ import java.util.stream.Collectors;
 @Tag(name = "Client", description = "API of Client")
 @RequestMapping(value = "/client")
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 public class ClientController {
 
     @Autowired
-    ClientServiceImpl clientServiceImpl;
+    ClientService clientService;
 
     @Autowired
     ModelMapper mapper;
@@ -33,14 +33,14 @@ public class ClientController {
      *
      * @return {@link List} de {@link ClientDto}
      */
-    @Operation(summary = "Find", description = "Method that return a list of Categories"
+    @Operation(summary = "Find", description = "Method that return a list of Clients"
     )
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<ClientDto> findAll() {
 
-        List<Client> categories = this.clientServiceImpl.findAll();
+        List<Client> clients = this.clientService.findAll();
 
-        return categories.stream().map(e -> mapper.map(e, ClientDto.class)).collect(Collectors.toList());
+        return clients.stream().map(e -> mapper.map(e, ClientDto.class)).collect(Collectors.toList());
     }
 
     /**
@@ -49,12 +49,12 @@ public class ClientController {
      * @param id PK de la entidad
      * @param dto datos de la entidad
      */
-    @Operation(summary = "Save or Update", description = "Method that saves or updates a Category"
+    @Operation(summary = "Save or Update", description = "Method that saves or updates a Client"
     )
     @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
     public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody ClientDto dto) {
 
-        this.clientServiceImpl.save(id, dto);
+        this.clientService.save(id, dto);
     }
 
     /**
@@ -66,7 +66,7 @@ public class ClientController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Long id) throws Exception {
 
-        this.clientServiceImpl.delete(id);
+        this.clientService.delete(id);
     }
 
 }
