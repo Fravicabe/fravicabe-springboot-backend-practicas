@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class CategoryController {
 
     @Autowired
-    CategoryServiceImpl categoryServiceImpl;
+    CategoryService categoryService;
 
     @Autowired
     ModelMapper mapper;
@@ -38,7 +38,7 @@ public class CategoryController {
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<CategoryDto> findAll() {
 
-        List<Category> categories = this.categoryServiceImpl.findAll();
+        List<Category> categories = this.categoryService.findAll();
 
         return categories.stream().map(e -> mapper.map(e, CategoryDto.class)).collect(Collectors.toList());
     }
@@ -54,7 +54,7 @@ public class CategoryController {
     @RequestMapping(path = { "", "/{id}" }, method = RequestMethod.PUT)
     public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody CategoryDto dto) {
 
-        this.categoryServiceImpl.save(id, dto);
+        this.categoryService.save(id, dto);
     }
 
     /**
@@ -66,7 +66,7 @@ public class CategoryController {
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void delete(@PathVariable("id") Long id) throws Exception {
 
-        this.categoryServiceImpl.delete(id);
+        this.categoryService.delete(id);
     }
 
 }

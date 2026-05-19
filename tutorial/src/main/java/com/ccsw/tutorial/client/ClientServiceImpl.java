@@ -36,7 +36,7 @@ public class ClientServiceImpl implements ClientService {
         Client existing = this.clientRepository.findByName(dto.getName());
 
         if (existing != null && (!existing.getId().equals(id))) {
-            throw new RuntimeException("Client already exists");
+            throw new RuntimeException("El cliente ya existe");
         }
 
         Client client;
@@ -45,7 +45,7 @@ public class ClientServiceImpl implements ClientService {
             client = new Client();
         } else {
             client = this.clientRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("Client not found"));
+                    .orElseThrow(() -> new RuntimeException("No se ha encontrado al cliente"));
         }
 
         client.setName(dto.getName());
@@ -57,7 +57,7 @@ public class ClientServiceImpl implements ClientService {
     public void delete(Long id) throws Exception {
 
         if (this.get(id) == null) {
-            throw new Exception("Not exists");
+            throw new Exception("No existe");
         }
 
         List<Loan> clientLoans = this.loanRepository.findByClientId(id);
