@@ -1,7 +1,5 @@
 package com.ccsw.tutorial.game;
 
-
-import com.ccsw.tutorial.game.GameController;
 import com.ccsw.tutorial.game.model.Game;
 import com.ccsw.tutorial.game.model.GameDto;
 import io.swagger.v3.oas.annotations.Operation;
