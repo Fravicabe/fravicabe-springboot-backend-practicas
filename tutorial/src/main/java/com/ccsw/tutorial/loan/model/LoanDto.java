@@ -2,6 +2,7 @@ package com.ccsw.tutorial.loan.model;
 
 import com.ccsw.tutorial.client.model.ClientDto;
 import com.ccsw.tutorial.game.model.GameDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDate;
 
@@ -12,9 +13,9 @@ public class LoanDto {
     private GameDto game;
 
     private ClientDto client;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate loanDate;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate returnDate;
 
     public Long getId() {

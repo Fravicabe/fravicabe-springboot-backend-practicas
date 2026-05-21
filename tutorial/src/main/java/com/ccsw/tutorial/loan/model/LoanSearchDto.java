@@ -1,6 +1,8 @@
 package com.ccsw.tutorial.loan.model;
 
 import com.ccsw.tutorial.common.pageable.PageableRequest;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 /**
@@ -11,6 +13,7 @@ public class LoanSearchDto {
 
     private String gameTitle;
     private String clientName;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
     private PageableRequest pageable;
 
